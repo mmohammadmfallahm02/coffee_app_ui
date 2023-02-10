@@ -1,9 +1,16 @@
 import 'package:coffee_ui_app/constants/my_color.dart';
+import 'package:coffee_ui_app/view/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const MyApp(),
+  );
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.transparent));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,6 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         textTheme: GoogleFonts.bebasNeueTextTheme(const TextTheme(
@@ -39,7 +47,7 @@ class MyApp extends StatelessWidget {
                 color: SolidColor.primaryTextColor,
                 fontWeight: FontWeight.normal))),
       ),
-      home: const Scaffold(),
+      home: const MainScreen(),
     );
   }
 }

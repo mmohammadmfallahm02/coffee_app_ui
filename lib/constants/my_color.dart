@@ -7,3 +7,10 @@ class SolidColor {
   static const secondaryTextColor = Color(0xff4e5053);
   static const backgroundColor = Color(0xff0C0F14);
 }
+
+class GradientColor {
+  static const List<Color> iconGradient = [
+    Color.fromARGB(255, 36, 42, 54),
+    Color.fromARGB(255, 11, 14, 18),
+  ];
+}
