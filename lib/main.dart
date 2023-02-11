@@ -23,11 +23,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        textTheme: GoogleFonts.bebasNeueTextTheme(const TextTheme(
+        textTheme: GoogleFonts.robotoTextTheme(const TextTheme(
             headline1: TextStyle(
                 fontSize: 40,
                 color: SolidColor.primaryTextColor,
-                fontWeight: FontWeight.w600),
+                fontWeight: FontWeight.w500),
             headline4: TextStyle(
                 fontSize: 30,
                 color: SolidColor.primaryTextColor,
