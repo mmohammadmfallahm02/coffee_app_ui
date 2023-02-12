@@ -3,8 +3,9 @@ import 'package:coffee_ui_app/constants/widgets/icon.dart';
 import 'package:coffee_ui_app/gen/assets.gen.dart';
 import 'package:coffee_ui_app/models/coffee_type_product_model.dart';
 import 'package:coffee_ui_app/view/home_screen/coffee_type_list_widget.dart';
+import 'package:coffee_ui_app/view/home_screen/home_sreen.dart';
 import 'package:flutter/material.dart';
-import 'package:gradient_borders/gradient_borders.dart';
+
 
 class ProductScreen extends StatelessWidget {
   final CoffeeProductModel coffee;
@@ -29,7 +30,11 @@ class ProductScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(26),
                         child: coffee.image)),
                 // appbar
-                Positioned(child: appBar(bodyMargin)),
+                Positioned(
+                    child: appBar(
+                  context,
+                  bodyMargin,
+                )),
                 Positioned(
                     bottom: 0,
                     right: 0,
@@ -156,12 +161,18 @@ class ProductScreen extends StatelessWidget {
     );
   }
 
-  Widget appBar(double bodyMagin) => Padding(
+  Widget appBar(BuildContext context, double bodyMagin) => Padding(
       padding: EdgeInsets.fromLTRB(bodyMagin, 25, bodyMagin, 0),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        IconWidget(
-          child: Assets.icons.back
-              .image(scale: 20, color: SolidColor.secondaryTextColor),
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => const HomeScreen()));
+          },
+          child: IconWidget(
+            child: Assets.icons.back
+                .image(scale: 20, color: SolidColor.secondaryTextColor),
+          ),
         ),
         IconWidget(
           child: Assets.icons.favorite
