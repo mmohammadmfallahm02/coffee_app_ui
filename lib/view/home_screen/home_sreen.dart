@@ -46,10 +46,100 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               case 3:
                 return const CoffeeTypeListWidget(bodyMargin: bodyMargin);
+              case 4:
+                return Padding(
+                  padding:
+                      const EdgeInsets.fromLTRB(bodyMargin, 32, bodyMargin, 44),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Sepecial for you',
+                        style: themeData.textTheme.subtitle2!
+                            .copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      articleItem(themeData, '5 Coffee Beans You Must Try!',
+                          Assets.images.article.article1),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      articleItem(
+                          themeData,
+                          'That Morning Cup of Coffee May Extend Your Life',
+                          Assets.images.article.article4)
+                    ],
+                  ),
+                );
               default:
                 return Container();
             }
           }),
+    );
+  }
+
+  Container articleItem(
+      ThemeData themeData, String title, AssetGenImage articleImage) {
+    return Container(
+      height: 170,
+      decoration: BoxDecoration(
+          border: Border.all(width: 0.3),
+          gradient: const LinearGradient(
+              colors: GradientColor.iconGradient,
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter),
+          borderRadius: BorderRadius.circular(26)),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(
+            width: 16,
+          ),
+          SizedBox(
+            height: 140,
+            width: 140,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(18),
+              child: articleImage.image(fit: BoxFit.cover),
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          Expanded(
+              child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Text(
+                  title,
+                  style: themeData.textTheme.subtitle2,
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Text(
+                      'Read This Article',
+                      style: TextStyle(color: SolidColor.secondaryTextColor),
+                    ),
+                    Assets.icons.favorite
+                        .image(scale: 20, color: SolidColor.secondaryTextColor),
+                    const Icon(
+                      Icons.share,
+                      color: SolidColor.secondaryTextColor,
+                    )
+                  ],
+                )
+              ],
+            ),
+          ))
+        ],
+      ),
     );
   }
 
