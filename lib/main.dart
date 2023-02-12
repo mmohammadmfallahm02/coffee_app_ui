@@ -37,17 +37,17 @@ class MyApp extends StatelessWidget {
                 color: SolidColor.secondaryTextColor,
                 fontWeight: FontWeight.w600),
             subtitle2: TextStyle(
-                fontSize: 22,
+                fontSize: 18,
                 color: SolidColor.primaryTextColor,
-                fontWeight: FontWeight.normal),
+                fontWeight: FontWeight.w400),
             caption:
-                TextStyle(fontSize: 12, color: SolidColor.primaryTextColor),
+                TextStyle(fontSize: 10, color: SolidColor.primaryTextColor,fontWeight: FontWeight.w300),
             bodyText2: TextStyle(
                 fontSize: 14,
                 color: SolidColor.primaryTextColor,
                 fontWeight: FontWeight.normal))),
       ),
-      home:  HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }

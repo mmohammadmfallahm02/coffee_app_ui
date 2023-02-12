@@ -71,12 +71,96 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  $AssetsImagesArticleGen get article => const $AssetsImagesArticleGen();
+  $AssetsImagesCoffeeGen get coffee => const $AssetsImagesCoffeeGen();
+
   /// File path: assets/images/profile_picture.jpg
   AssetGenImage get profilePicture =>
       const AssetGenImage('assets/images/profile_picture.jpg');
 
   /// List of all assets
   List<AssetGenImage> get values => [profilePicture];
+}
+
+class $AssetsImagesArticleGen {
+  const $AssetsImagesArticleGen();
+
+  /// File path: assets/images/article/article1.jpg
+  AssetGenImage get article1 =>
+      const AssetGenImage('assets/images/article/article1.jpg');
+
+  /// File path: assets/images/article/article2.jpg
+  AssetGenImage get article2 =>
+      const AssetGenImage('assets/images/article/article2.jpg');
+
+  /// File path: assets/images/article/article3.jpg
+  AssetGenImage get article3 =>
+      const AssetGenImage('assets/images/article/article3.jpg');
+
+  /// File path: assets/images/article/article4.jpg
+  AssetGenImage get article4 =>
+      const AssetGenImage('assets/images/article/article4.jpg');
+
+  /// File path: assets/images/article/article5.jpg
+  AssetGenImage get article5 =>
+      const AssetGenImage('assets/images/article/article5.jpg');
+
+  /// List of all assets
+  List<AssetGenImage> get values =>
+      [article1, article2, article3, article4, article5];
+}
+
+class $AssetsImagesCoffeeGen {
+  const $AssetsImagesCoffeeGen();
+
+  /// File path: assets/images/coffee/cappuccino1.jpg
+  AssetGenImage get cappuccino1 =>
+      const AssetGenImage('assets/images/coffee/cappuccino1.jpg');
+
+  /// File path: assets/images/coffee/cappuccino2.jpg
+  AssetGenImage get cappuccino2 =>
+      const AssetGenImage('assets/images/coffee/cappuccino2.jpg');
+
+  /// File path: assets/images/coffee/cappuccino3.jpg
+  AssetGenImage get cappuccino3 =>
+      const AssetGenImage('assets/images/coffee/cappuccino3.jpg');
+
+  /// File path: assets/images/coffee/cappuccino4.jpg
+  AssetGenImage get cappuccino4 =>
+      const AssetGenImage('assets/images/coffee/cappuccino4.jpg');
+
+  /// File path: assets/images/coffee/cappuccino5.jpg
+  AssetGenImage get cappuccino5 =>
+      const AssetGenImage('assets/images/coffee/cappuccino5.jpg');
+
+  /// File path: assets/images/coffee/latte1.jpg
+  AssetGenImage get latte1 =>
+      const AssetGenImage('assets/images/coffee/latte1.jpg');
+
+  /// File path: assets/images/coffee/latte2.jpg
+  AssetGenImage get latte2 =>
+      const AssetGenImage('assets/images/coffee/latte2.jpg');
+
+  /// File path: assets/images/coffee/latte3.jpg
+  AssetGenImage get latte3 =>
+      const AssetGenImage('assets/images/coffee/latte3.jpg');
+
+  /// File path: assets/images/coffee/latte4.jpg
+  AssetGenImage get latte4 =>
+      const AssetGenImage('assets/images/coffee/latte4.jpg');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+        cappuccino1,
+        cappuccino2,
+        cappuccino3,
+        cappuccino4,
+        cappuccino5,
+        latte1,
+        latte2,
+        latte3,
+        latte4
+      ];
 }
 
 class Assets {

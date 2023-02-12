@@ -6,15 +6,8 @@ import 'package:coffee_ui_app/models/fake_data.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  CoffeeType selectedCoffeeType = CoffeeType.cappuccino;
 
   @override
   Widget build(BuildContext context) {
@@ -45,49 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: searchBarWidget(themeData),
                 );
               case 3:
-                return SizedBox(
-                  height: 150,
-                  child: ListView.builder(
-                      itemCount: coffeeTypeList.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        final coffeeItem = coffeeTypeList[index];
-                        return Padding(
-                            padding:
-                                const EdgeInsets.fromLTRB(bodyMargin, 50, 8, 0),
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  selectedCoffeeType = coffeeItem.coffeeType;
-                                });
-                              },
-                              child: Column(
-                                children: [
-                                  Text(
-                                    coffeeItem.coffeeName,
-                                    style: coffeeItem.coffeeType ==
-                                            selectedCoffeeType
-                                        ? themeData.textTheme.subtitle1!.apply(
-                                            color: SolidColor.primaryColor)
-                                        : themeData.textTheme.subtitle1,
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  coffeeItem.coffeeType == selectedCoffeeType
-                                      ? Container(
-                                          width: 8,
-                                          height: 8,
-                                          decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: SolidColor.primaryColor),
-                                        )
-                                      : const SizedBox()
-                                ],
-                              ),
-                            ));
-                      }),
-                );
+                return const CoffeeTypeListWidget(bodyMargin: bodyMargin);
               default:
                 return Container();
             }
@@ -126,8 +77,8 @@ class _HomeScreenState extends State<HomeScreen> {
               .image(scale: 20, color: SolidColor.secondaryTextColor),
         ),
         Container(
-            width: 55,
-            height: 55,
+            width: 50,
+            height: 50,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(18),
                 border: const GradientBoxBorder(
@@ -142,4 +93,161 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Assets.images.profilePicture.image(fit: BoxFit.cover),
             ))
       ]));
+}
+
+class CoffeeTypeListWidget extends StatefulWidget {
+  final double bodyMargin;
+
+  const CoffeeTypeListWidget({super.key, required this.bodyMargin});
+
+  @override
+  State<CoffeeTypeListWidget> createState() => _CoffeeTypeListWidgetState();
+}
+
+CoffeeType selectedCoffeeType = CoffeeType.cappuccino;
+
+class _CoffeeTypeListWidgetState extends State<CoffeeTypeListWidget> {
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+    return Column(
+      children: [
+        SizedBox(
+          height: 120,
+          child: ListView.builder(
+              itemCount: coffeeTypeList.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                final coffeeTypeItem = coffeeTypeList[index];
+                return Padding(
+                    padding: EdgeInsets.fromLTRB(widget.bodyMargin, 50, 8, 0),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedCoffeeType = coffeeTypeItem.coffeeType;
+                        });
+                      },
+                      child: Column(
+                        children: [
+                          Text(
+                            coffeeTypeItem.coffeeTypeName,
+                            style:
+                                coffeeTypeItem.coffeeType == selectedCoffeeType
+                                    ? themeData.textTheme.subtitle1!
+                                        .apply(color: SolidColor.primaryColor)
+                                    : themeData.textTheme.subtitle1,
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          coffeeTypeItem.coffeeType == selectedCoffeeType
+                              ? Container(
+                                  width: 8,
+                                  height: 8,
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: SolidColor.primaryColor),
+                                )
+                              : const SizedBox()
+                        ],
+                      ),
+                    ));
+              }),
+        ),
+        SizedBox(
+          height: 280,
+          child: ListView.builder(
+              itemCount: 25,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) => Padding(
+                    padding: EdgeInsets.fromLTRB(
+                        index == 0 ? 30 : widget.bodyMargin, 0, 4, 0),
+                    child: Container(
+                      height: 280,
+                      width: 170,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(24),
+                          gradient: const LinearGradient(
+                              colors: GradientColor.iconGradient,
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(22),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: SolidColor.secondaryTextColor
+                                                .withOpacity(0.3),
+                                            blurRadius: 20)
+                                      ]),
+                                  width: 160,
+                                  height: 150,
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(22),
+                                      child: Assets.images.coffee.cappuccino3
+                                          .image(fit: BoxFit.cover))),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 4, right: 4, top: 16),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Cappuccino',
+                                      style: themeData.textTheme.subtitle2,
+                                    ),
+                                    const SizedBox(
+                                      height: 4,
+                                    ),
+                                    Text(
+                                      'With Oat Milk',
+                                      style: themeData.textTheme.caption,
+                                    ),
+                                    const SizedBox(
+                                      height: 4,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Assets.icons.dollar.image(
+                                                scale: 30,
+                                                color: SolidColor.primaryColor),
+                                            Text(
+                                              '4.20',
+                                              style: themeData
+                                                  .textTheme.subtitle2
+                                            )
+                                          ],
+                                        ),
+                                        Container(
+                                          width: 35,
+                                          height: 35,
+                                          decoration: BoxDecoration(
+                                              color: SolidColor.primaryColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(14)),
+                                          child: Assets.icons.add.image(
+                                              scale: 45, color: Colors.white),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              )
+                            ]),
+                      ),
+                    ),
+                  )),
+        )
+      ],
+    );
+  }
 }

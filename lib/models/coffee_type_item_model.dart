@@ -1,12 +1,11 @@
 enum CoffeeType { latte, cappuccino, americano, espresso, mocha }
 
 class CoffeeTypeModel {
-  final String coffeeName;
-
+  final String coffeeTypeName;
   final CoffeeType coffeeType;
 
   CoffeeTypeModel({
-    required this.coffeeName,
+    required this.coffeeTypeName,
     required this.coffeeType,
   });
 }
