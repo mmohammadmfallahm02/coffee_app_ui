@@ -10,7 +10,7 @@ void main() {
   );
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      systemNavigationBarColor: Colors.transparent));
+      systemNavigationBarColor: SolidColor.backgroundColor));
 }
 
 class MyApp extends StatelessWidget {
@@ -40,8 +40,10 @@ class MyApp extends StatelessWidget {
                 fontSize: 18,
                 color: SolidColor.primaryTextColor,
                 fontWeight: FontWeight.w400),
-            caption:
-                TextStyle(fontSize: 10, color: SolidColor.primaryTextColor,fontWeight: FontWeight.w300),
+            caption: TextStyle(
+                fontSize: 10,
+                color: SolidColor.primaryTextColor,
+                fontWeight: FontWeight.w300),
             bodyText2: TextStyle(
                 fontSize: 14,
                 color: SolidColor.primaryTextColor,

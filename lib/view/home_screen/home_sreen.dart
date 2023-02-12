@@ -5,17 +5,25 @@ import 'package:coffee_ui_app/view/home_screen/coffee_type_list_widget.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+int selectedTabIndex = 0;
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     const double bodyMargin = 25;
     return Scaffold(
       backgroundColor: SolidColor.backgroundColor,
+      bottomNavigationBar: bottomNavigationBar(),
       body: ListView.builder(
-          itemCount: 6,
+          itemCount: 5,
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
             switch (index) {
@@ -43,6 +51,42 @@ class HomeScreen extends StatelessWidget {
             }
           }),
     );
+  }
+
+  Widget bottomNavigationBar() {
+    return BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: SolidColor.backgroundColor,
+        elevation: 0,
+        currentIndex: selectedTabIndex,
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
+        onTap: (value) {
+          setState(() {
+            selectedTabIndex = value;
+          });
+        },
+        items: [
+          bottomNavigationBarItem(Assets.icons.home, selectedTabIndex == 0),
+          bottomNavigationBarItem(Assets.icons.bag, selectedTabIndex == 1),
+          bottomNavigationBarItem(Assets.icons.favorite, selectedTabIndex == 2),
+          bottomNavigationBarItem(
+              Assets.icons.notification, selectedTabIndex == 3),
+        ]);
+  }
+
+  BottomNavigationBarItem bottomNavigationBarItem(
+      AssetGenImage iconName, bool isActive) {
+    return BottomNavigationBarItem(
+        icon: Padding(
+          padding: const EdgeInsets.only(top: 8, bottom: 8),
+          child: iconName.image(
+              scale: 20,
+              color: isActive
+                  ? SolidColor.primaryColor
+                  : SolidColor.secondaryTextColor),
+        ),
+        label: '');
   }
 
   Widget searchBarWidget(ThemeData themeData) {
