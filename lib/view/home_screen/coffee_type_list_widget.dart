@@ -3,6 +3,7 @@ import 'package:coffee_ui_app/gen/assets.gen.dart';
 import 'package:coffee_ui_app/models/coffee_type_item_model.dart';
 import 'package:coffee_ui_app/models/coffee_type_product_model.dart';
 import 'package:coffee_ui_app/models/fake_data.dart';
+import 'package:coffee_ui_app/view/product_screen.dart';
 import 'package:flutter/material.dart';
 
 class CoffeeTypeListWidget extends StatefulWidget {
@@ -43,24 +44,31 @@ class _CoffeeTypeListWidgetState extends State<CoffeeTypeListWidget> {
             return Padding(
               padding: EdgeInsets.fromLTRB(
                   index == 0 ? 30 : widget.bodyMargin, 0, 4, 0),
-              child: Container(
-                height: 270,
-                width: 170,
-                decoration: BoxDecoration(
-                    border: Border.all(width: 0.2),
-                    borderRadius: BorderRadius.circular(24),
-                    gradient: const LinearGradient(
-                        colors: GradientColor.iconGradient,
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter)),
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        coffeeTypeListProductImage(coffee),
-                        coffeeTypeListProductInformation(themeData, coffee)
-                      ]),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(24),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ProductScreen()));
+                },
+                child: Container(
+                  height: 270,
+                  width: 170,
+                  decoration: BoxDecoration(
+                      border: Border.all(width: 0.2),
+                      borderRadius: BorderRadius.circular(24),
+                      gradient: const LinearGradient(
+                          colors: GradientColor.iconGradient,
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          coffeeTypeListProductImage(coffee),
+                          coffeeTypeListProductInformation(themeData, coffee)
+                        ]),
+                  ),
                 ),
               ),
             );
@@ -76,7 +84,7 @@ class _CoffeeTypeListWidgetState extends State<CoffeeTypeListWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Cappuccino',
+            coffeeTypeMap[selectedCoffeeType]!,
             style: themeData.textTheme.subtitle2,
           ),
           const SizedBox(
@@ -119,12 +127,8 @@ class _CoffeeTypeListWidgetState extends State<CoffeeTypeListWidget> {
       children: [
         Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(22),
-                boxShadow: [
-                  BoxShadow(
-                      color: SolidColor.secondaryTextColor.withOpacity(0.3),
-                      blurRadius: 20)
-                ]),
+              borderRadius: BorderRadius.circular(22),
+            ),
             width: 160,
             height: 150,
             child: ClipRRect(
@@ -206,3 +210,11 @@ class _CoffeeTypeListWidgetState extends State<CoffeeTypeListWidget> {
     );
   }
 }
+
+final coffeeTypeMap = {
+  CoffeeType.cappuccino: "Cappuccino",
+  CoffeeType.latte: "latte",
+  CoffeeType.americano: "Americano",
+  CoffeeType.espresso: "Espresso",
+  CoffeeType.mocha: "Mocha",
+};

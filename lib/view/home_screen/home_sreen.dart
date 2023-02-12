@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       articleItem(
                           themeData,
                           'That Morning Cup of Coffee May Extend Your Life',
-                          Assets.images.article.article4)
+                          Assets.images.article.article5)
                     ],
                   ),
                 );
@@ -94,41 +94,43 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(
-            width: 16,
-          ),
-          SizedBox(
-            height: 140,
-            width: 140,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(18),
-              child: articleImage.image(fit: BoxFit.cover),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: SizedBox(
+              height: 150,
+              width: 130,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(22),
+                child: articleImage.image(fit: BoxFit.cover),
+              ),
             ),
-          ),
-          const SizedBox(
-            width: 20,
           ),
           Expanded(
               child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   title,
                   style: themeData.textTheme.subtitle2,
                 ),
-                const SizedBox(
-                  height: 40,
-                ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Text(
                       'Read This Article',
                       style: TextStyle(color: SolidColor.secondaryTextColor),
                     ),
+                    const SizedBox(
+                      width: 8,
+                    ),
                     Assets.icons.favorite
                         .image(scale: 20, color: SolidColor.secondaryTextColor),
+                    const SizedBox(
+                      width: 8,
+                    ),
                     const Icon(
                       Icons.share,
                       color: SolidColor.secondaryTextColor,
@@ -147,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: SolidColor.backgroundColor,
-        elevation: 0,
+        elevation: 10,
         currentIndex: selectedTabIndex,
         showUnselectedLabels: false,
         showSelectedLabels: false,
