@@ -1,5 +1,5 @@
 import 'package:coffee_ui_app/constants/my_color.dart';
-import 'package:coffee_ui_app/view/home_sreen.dart';
+import 'package:coffee_ui_app/view/home_screen/home_sreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
