@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Container articleItem(
       ThemeData themeData, String title, AssetGenImage articleImage) {
     return Container(
-      height: 170,
+      height: 160,
       decoration: BoxDecoration(
           border: Border.all(width: 0.3),
           gradient: const LinearGradient(
@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.all(12),
             child: SizedBox(
               height: 150,
-              width: 130,
+              width: 120,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(22),
                 child: articleImage.image(fit: BoxFit.cover),
@@ -118,20 +118,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       'Read This Article',
                       style: TextStyle(color: SolidColor.secondaryTextColor),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 8,
                     ),
-                    Assets.icons.favorite
-                        .image(scale: 20, color: SolidColor.secondaryTextColor),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    const Icon(
+                    Icon(
                       Icons.share,
                       color: SolidColor.secondaryTextColor,
                     )

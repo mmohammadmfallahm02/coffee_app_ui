@@ -17,40 +17,40 @@ List<CoffeeTypeModel> coffeeTypeList = [
 // coffee product fake data
 
 List<CoffeeProductModel> coffeeList = [
-  CoffeeProductModel(
+  CoffeeProductModel('3.494',
       coffeeType: CoffeeType.cappuccino,
       description: 'With Oat Milk',
       price: '4.20',
       star: '4.5',
       image: Assets.images.coffee.cappuccino5.image(fit: BoxFit.cover)),
-  CoffeeProductModel(
+  CoffeeProductModel('2.578',
       coffeeType: CoffeeType.cappuccino,
       description: 'With Chocolate',
       price: '3.14',
       star: '4.2',
       image: Assets.images.coffee.cappuccino3.image(fit: BoxFit.cover)),
-  CoffeeProductModel(
+  CoffeeProductModel('23.495',
       coffeeType: CoffeeType.cappuccino,
       description: 'Normal',
-      price: '3',
+      price: '3.00',
       star: '3.5',
       image: Assets.images.coffee.cappuccino4.image(fit: BoxFit.cover)),
-  CoffeeProductModel(
+  CoffeeProductModel('3.399',
       coffeeType: CoffeeType.latte,
       description: 'With Oat Milk',
       price: '5.20',
       star: '5',
       image: Assets.images.coffee.latte1.image(fit: BoxFit.cover)),
-  CoffeeProductModel(
+  CoffeeProductModel('2.404',
       coffeeType: CoffeeType.latte,
       description: 'Normal',
       price: '4.20',
       star: '3.1',
       image: Assets.images.coffee.latte2.image(fit: BoxFit.cover)),
-  CoffeeProductModel(
+  CoffeeProductModel('49.393',
       coffeeType: CoffeeType.latte,
       description: 'With Sirope',
-      price: '6',
+      price: '6.00',
       star: '4.7',
       image: Assets.images.coffee.latte3.image(fit: BoxFit.cover)),
 ];

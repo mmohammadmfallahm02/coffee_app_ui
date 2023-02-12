@@ -24,12 +24,12 @@ class _CoffeeTypeListWidgetState extends State<CoffeeTypeListWidget> {
     return Column(
       children: [
         coffeeTypeNameList(themeData),
-        coffeeTypeListProduct(themeData)
+        coffeeTypeListProduct(themeData, widget.bodyMargin)
       ],
     );
   }
 
-  SizedBox coffeeTypeListProduct(ThemeData themeData) {
+  SizedBox coffeeTypeListProduct(ThemeData themeData, double bodyMargin) {
     return SizedBox(
       height: 270,
       child: ListView.builder(
@@ -48,7 +48,10 @@ class _CoffeeTypeListWidgetState extends State<CoffeeTypeListWidget> {
                 borderRadius: BorderRadius.circular(24),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const ProductScreen()));
+                      builder: (context) => ProductScreen(
+                            coffee: coffee,
+                            bodyMargin: bodyMargin,
+                          )));
                 },
                 child: Container(
                   height: 270,

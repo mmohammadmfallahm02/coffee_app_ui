@@ -7,8 +7,9 @@ class CoffeeProductModel {
   final String price;
   final String star;
   final Widget image;
+  final String rateNumber;
 
-  CoffeeProductModel(
+  CoffeeProductModel(this.rateNumber, 
       {required this.coffeeType,
       required this.description,
       required this.price,
