@@ -1,16 +1,17 @@
+import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:coffee_ui_app/constants/my_color.dart';
 import 'package:coffee_ui_app/constants/widgets/icon.dart';
 import 'package:coffee_ui_app/gen/assets.gen.dart';
-import 'package:coffee_ui_app/models/coffee_type_product_model.dart';
+import 'package:coffee_ui_app/models/coffee_item_model.dart';
 import 'package:coffee_ui_app/view/home_screen/coffee_type_list_widget.dart';
 import 'package:coffee_ui_app/view/home_screen/home_sreen.dart';
 import 'package:flutter/material.dart';
+import 'package:readmore/readmore.dart';
 
-
-class ProductScreen extends StatelessWidget {
-  final CoffeeProductModel coffee;
+class CoffeeItemScreen extends StatelessWidget {
+  final CoffeeItemModel coffee;
   final double bodyMargin;
-  const ProductScreen(
+  const CoffeeItemScreen(
       {super.key, required this.coffee, required this.bodyMargin});
 
   @override
@@ -19,42 +20,64 @@ class ProductScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: SolidColor.backgroundColor,
       body: SafeArea(
-        child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Stack(
-              children: [
-                SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.6,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(26),
-                        child: coffee.image)),
-                // appbar
-                Positioned(
-                    child: appBar(
-                  context,
-                  bodyMargin,
-                )),
-                Positioned(
-                    bottom: 0,
-                    right: 0,
-                    left: 0,
-                    child: coffeeItemInfo(context, themeData))
-              ],
+        child: SingleChildScrollView(
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Stack(
+                children: [
+                  SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.6,
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(32),
+                          child: coffee.image)),
+                  // appbar
+                  Positioned(
+                      child: appBar(
+                    context,
+                    bodyMargin,
+                  )),
+                  Positioned(
+                      bottom: 0,
+                      right: 0,
+                      left: 0,
+                      child: coffeeItemInfo(context, themeData))
+                ],
+              ),
             ),
-          )
-        ]),
+            Padding(
+              padding:  EdgeInsets.fromLTRB(bodyMargin, 20, bodyMargin, 32),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Description', style: themeData.textTheme.bodyText2),
+                  const SizedBox(
+                height: 14,
+              ),
+              ReadMoreText(
+                'The cappuccino is a balanced coffee that’s a true test of any barista’s skills. Known for the even distribution of coffee and milk and served in a large cup with a dusting of chocolate on top, a cappuccino is one of the most popular coffee types in the UK, seconded only to the latte. If you’re a true frothy coffee lover you may be wondering what is a cappuccino and where it comes from. Keep reading to find out all you need to know…',
+                // trimLines: 1,
+                trimLength: 90,
+                style: themeData.textTheme.bodyText2!.copyWith(height: 1.6),
+                colorClickableText: SolidColor.primaryColor,
+                trimCollapsedText: 'Read More',
+                trimExpandedText: 'Close',
+              )
+                ],
+              ),
+            ),
+            
+          ]),
+        ),
       ),
     );
   }
 
-  Container coffeeItemInfo(BuildContext context, ThemeData themeData) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.18,
+  Widget coffeeItemInfo(BuildContext context, ThemeData themeData) {
+    return BlurryContainer(
+      height: MediaQuery.of(context).size.height * 0.2,
       width: double.infinity,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(26),
-          color: SolidColor.backgroundColor.withOpacity(0.7)),
+      borderRadius: BorderRadius.circular(32),
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Row(children: [
@@ -78,10 +101,10 @@ class ProductScreen extends StatelessWidget {
                   height: 20,
                 ),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Assets.icons.star.image(
-                      scale: 20,
+                      scale: 30,
                       color: SolidColor.primaryColor,
                     ),
                     const SizedBox(
@@ -97,8 +120,8 @@ class ProductScreen extends StatelessWidget {
                     Text(
                       '(${coffee.rateNumber})',
                       style: const TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.w100),
-                    )
+                          fontSize: 10, fontWeight: FontWeight.w100),
+                    ),
                   ],
                 )
               ],
@@ -137,7 +160,7 @@ class ProductScreen extends StatelessWidget {
     );
   }
 
-  Container coffeeInfoRectangleWidget(
+  Widget coffeeInfoRectangleWidget(
       ThemeData themeData, String title, AssetGenImage iconName) {
     return Container(
       height: 60,

@@ -1,9 +1,9 @@
 import 'package:coffee_ui_app/constants/my_color.dart';
 import 'package:coffee_ui_app/gen/assets.gen.dart';
 import 'package:coffee_ui_app/models/coffee_type_item_model.dart';
-import 'package:coffee_ui_app/models/coffee_type_product_model.dart';
+import 'package:coffee_ui_app/models/coffee_item_model.dart';
 import 'package:coffee_ui_app/models/fake_data.dart';
-import 'package:coffee_ui_app/view/product_screen.dart';
+import 'package:coffee_ui_app/view/coffee_item_screen.dart';
 import 'package:flutter/material.dart';
 
 class CoffeeTypeListWidget extends StatefulWidget {
@@ -48,7 +48,7 @@ class _CoffeeTypeListWidgetState extends State<CoffeeTypeListWidget> {
                 borderRadius: BorderRadius.circular(24),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ProductScreen(
+                      builder: (context) => CoffeeItemScreen(
                             coffee: coffee,
                             bodyMargin: bodyMargin,
                           )));
@@ -80,7 +80,7 @@ class _CoffeeTypeListWidgetState extends State<CoffeeTypeListWidget> {
   }
 
   Padding coffeeTypeListProductInformation(
-      ThemeData themeData, CoffeeProductModel coffee) {
+      ThemeData themeData, CoffeeItemModel coffee) {
     return Padding(
       padding: const EdgeInsets.only(left: 4, right: 4, top: 16),
       child: Column(
@@ -125,7 +125,7 @@ class _CoffeeTypeListWidgetState extends State<CoffeeTypeListWidget> {
     );
   }
 
-  Widget coffeeTypeListProductImage(CoffeeProductModel coffee) {
+  Widget coffeeTypeListProductImage(CoffeeItemModel coffee) {
     return Stack(
       children: [
         Container(
