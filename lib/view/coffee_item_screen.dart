@@ -28,7 +28,7 @@ class CoffeeItemScreen extends StatelessWidget {
               child: Stack(
                 children: [
                   SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.6,
+                      height: MediaQuery.of(context).size.height * 0.55,
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(32),
                           child: coffee.image)),
@@ -47,29 +47,74 @@ class CoffeeItemScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding:  EdgeInsets.fromLTRB(bodyMargin, 20, bodyMargin, 32),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+              padding: EdgeInsets.fromLTRB(bodyMargin, 20, bodyMargin, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Description', style: themeData.textTheme.bodyText2),
                   const SizedBox(
-                height: 14,
-              ),
-              ReadMoreText(
-                'The cappuccino is a balanced coffee that’s a true test of any barista’s skills. Known for the even distribution of coffee and milk and served in a large cup with a dusting of chocolate on top, a cappuccino is one of the most popular coffee types in the UK, seconded only to the latte. If you’re a true frothy coffee lover you may be wondering what is a cappuccino and where it comes from. Keep reading to find out all you need to know…',
-                // trimLines: 1,
-                trimLength: 90,
-                style: themeData.textTheme.bodyText2!.copyWith(height: 1.6),
-                colorClickableText: SolidColor.primaryColor,
-                trimCollapsedText: 'Read More',
-                trimExpandedText: 'Close',
-              )
+                    height: 14,
+                  ),
+                  descriptionWidget(themeData),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  Text('Size', style: themeData.textTheme.bodyText2),
+                  const SizedBox(
+                    height: 14,
+                  ),
+                  const CoffeeSizeWidget(),
+                  const SizedBox(height: 32,),
+                  Row(
+                    children: [
+                      Column(
+                        children: [
+                          const Text('price',),
+                          const SizedBox(height: 4,),
+                          Row(
+                            children: [
+                              Assets.icons.dollar.image(
+                                  scale: 20, color: SolidColor.primaryColor),Text(coffee.price,style:  themeData.textTheme.headline3,)
+                            ],
+                          )
+                        ],
+                      ),
+                      Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 32),
+                            child: Container(
+                        height: 60,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                              color: SolidColor.primaryColor,
+                              borderRadius: BorderRadius.circular(22)),
+                        child: Text(
+                            'Buy Now',
+                            style: themeData.textTheme.headline3!
+                                .copyWith(fontSize: 20),
+                        ),
+                      ),
+                          ))
+                    ],
+                  )
                 ],
               ),
             ),
-            
           ]),
         ),
       ),
+    );
+  }
+
+  ReadMoreText descriptionWidget(ThemeData themeData) {
+    return ReadMoreText(
+      'The cappuccino is a balanced coffee that’s a true test of any barista’s skills. Known for the even distribution of coffee and milk and served in a large cup with a dusting of chocolate on top, a cappuccino is one of the most popular coffee types in the UK, seconded only to the latte. If you’re a true frothy coffee lover you may be wondering what is a cappuccino and where it comes from. Keep reading to find out all you need to know…',
+      // trimLines: 1,
+      trimLength: 90,
+      style: themeData.textTheme.bodyText2!.copyWith(height: 1.6),
+      colorClickableText: SolidColor.primaryColor,
+      trimCollapsedText: 'Read More',
+      trimExpandedText: 'Close',
     );
   }
 
@@ -203,3 +248,66 @@ class CoffeeItemScreen extends StatelessWidget {
         ),
       ]));
 }
+
+class CoffeeSizeWidget extends StatefulWidget {
+  const CoffeeSizeWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<CoffeeSizeWidget> createState() => _CoffeeSizeWidgetState();
+}
+
+CoffeeSize seletedCoffeeSize = CoffeeSize.small;
+
+class _CoffeeSizeWidgetState extends State<CoffeeSizeWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        coffeeSizeItem(seletedCoffeeSize == CoffeeSize.small, 'S', () {
+          setState(() {
+            seletedCoffeeSize = CoffeeSize.small;
+          });
+        }),
+        coffeeSizeItem(seletedCoffeeSize == CoffeeSize.normal, 'M', () {
+          setState(() {
+            seletedCoffeeSize = CoffeeSize.normal;
+          });
+        }),
+        coffeeSizeItem(seletedCoffeeSize == CoffeeSize.large, 'L', () {
+          setState(() {
+            seletedCoffeeSize = CoffeeSize.large;
+          });
+        }),
+      ],
+    );
+  }
+
+  Widget coffeeSizeItem(bool isSelected, String text, Function()? onTap) =>
+      Expanded(
+          child: Padding(
+        padding: const EdgeInsets.all(6),
+        child: GestureDetector(
+          onTap: onTap,
+          child: Container(
+            height: 40,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(14),
+                border: isSelected
+                    ? Border.all(color: SolidColor.primaryColor)
+                    : null,
+                color: isSelected
+                    ? SolidColor.backgroundColor
+                    : SolidColor.secondaryColor),
+            child: Text(text,
+                style: isSelected
+                    ? const TextStyle(color: SolidColor.primaryColor)
+                    : null),
+          ),
+        ),
+      ));
+}
+
+enum CoffeeSize { small, normal, large }
